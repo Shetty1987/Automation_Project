@@ -40,18 +40,3 @@ tar -cvf /tmp/${myname}-httpd-logs-${timestamp}.tar /var/log/apache2/
 #upload the tar file to AWS S3 bucket
 aws s3 cp /tmp/${myname}-httpd-logs-${timestamp}.tar s3://${s3_bucket}/${myname}-httpd-logs-${timestamp}.tar
 
-#get the size of the file
-size=$(ls -lh /tmp/${myname}-httpd-logs-${timestamp}.tar | cut -d " " -f 5)
-
-#check  /var/www/html/inventory.html file exists or not
-
-test -e /var/www/html/inventory.html
-if [ $? -gt 0 ]
-then
-	touch /var/www/html/inventory.html
-        echo "Log Type	Time Created	Type	Size" > /var/www/html/inventory.html	
-fi
-
-# append job  info to  inventory.html
-echo "httpd-logs"	 $timestamp	 "tar"	 $size >>  /var/www/html/inventory.html
-
