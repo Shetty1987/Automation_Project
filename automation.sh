@@ -9,8 +9,7 @@ httpd --version
 if [ $? -gt 0 ]
 then
 	#install the apche2 server
-	#sudo apt install apache2
-	echo installing apache2 server
+	sudo apt install apache2	
 fi
 
 # check apache2 server is running or not
