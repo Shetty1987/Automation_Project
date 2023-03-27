@@ -12,7 +12,7 @@ pipeline{
         stage('build')
         {
             steps{
-                sh "echo hello"
+                sh "echo hello && cat Jenkinsfile"
             }
         }
         stage('deploy')
